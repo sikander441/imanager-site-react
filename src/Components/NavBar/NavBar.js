@@ -15,8 +15,8 @@ class NavBar extends Component{
                            <span className="fas fa-user caret"></span> Account</button>
 
                            <ul className="dropdown-menu ">
-                           <li><a className="dropdown-item" href="#"> Log out</a></li>
-                           <li><a className="dropdown-item" href="#"> Edit profile</a></li>
+                           <li><a className="dropdown-item" href="/"> Log out</a></li>
+                           <li><a className="dropdown-item" href="/"> Edit profile</a></li>
                            </ul>
                        </li>
 

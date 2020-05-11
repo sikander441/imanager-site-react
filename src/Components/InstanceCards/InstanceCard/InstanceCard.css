@@ -2,8 +2,28 @@
   margin:15px;
   widht:18rem;
   height:16rem;
+  border-width:1.5px;
+  border-radius: 3%;
 }
 .btn{
-  background:#f0f0f0;
+  background:#222831;
   font-weight: bold;
+  color:#eeeeee;
+
+}
+.btn:hover{
+  color:#222831;
+  background: #eeeeee;
+}
+
+a {
+    color:green;
+    text-decoration: none;
+}
+
+a:hover
+{
+     color:#00A0C6;
+     text-decoration:none;
+     cursor:pointer;
 }
