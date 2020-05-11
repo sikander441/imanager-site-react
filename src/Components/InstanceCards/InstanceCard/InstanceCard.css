@@ -1,0 +1,9 @@
+.card{
+  margin:15px;
+  widht:18rem;
+  height:16rem;
+}
+.btn{
+  background:#f0f0f0;
+  font-weight: bold;
+}
