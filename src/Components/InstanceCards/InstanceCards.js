@@ -29,6 +29,8 @@ handleChange = event => {
        return item.version.toLowerCase().includes(lowercasedFilter)
      });
     return (
+      <React.Fragment>
+      <center> <h5 className='center' style={{marginBottom:"20px"}}> Total Instances: {filteredData.length}</h5> </center>
       <div className="container">
         <div className="input-group col-12">
             <div className="input-group-prepend">
@@ -43,6 +45,7 @@ handleChange = event => {
              } )}
         </div>
      </div>
+     </React.Fragment>
     );
   }
 }

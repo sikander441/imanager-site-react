@@ -1,0 +1,19 @@
+.page-header{
+    position: relative;
+    top: 40%;
+}
+
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+  }
+  .button-group button{
+     margin-right:15px;
+     padding:4px 30px;
+     width:auto;
+  }
+
+  .backdrop{
+    color: '#fff';
+    z-index:10000;
+  }

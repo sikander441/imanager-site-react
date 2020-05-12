@@ -1,17 +1,20 @@
 import React from 'react';
 import './App.css';
 import InstanceCards from './Components/InstanceCards/InstanceCards';
-import NavBar from './Components/NavBar/NavBar'
+
+import {Route } from 'react-router-dom'
+import Layout from './Components/Containers/Layout/Layout'
+import RegisterInstance from './Components/RegisterInstance/RegisterInstance'
 
 function App() {
   return (
-     <React.Fragment>
-    <NavBar/>
-    <div className="App">
-     <InstanceCards/>
-    </div>
-    </React.Fragment>
+     <Layout>
+         <Route path="/" exact  component={InstanceCards}/>
+         <Route path="/register" exact component={RegisterInstance}/>
+     </Layout>
   );
 }
+
+ 
 
 export default App;

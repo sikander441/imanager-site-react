@@ -63,9 +63,9 @@ class InstanceCard extends Component{
                   <hr className="dotted"/>
 
                   <p className="card-text">
-                  URL:<a target="_blank" href={`http://${this.props.instance.host}:${this.props.instance.port}`}>{this.props.instance.host}:{this.props.instance.port}</a><br/>
-                    Logs(Catalina)<a target="_blank" href={`http://INW1PF14DEZC:3000/instances/getLogs/${this.props.instance._id}/catalina`}>click here!</a><br/>
-                    Logs(Node):<a target="_blank" href={`http://INW1PF14DEZC:3000/instances/getLogs/${this.props.instance._id}/node`}>click here!</a><br/>
+                  URL:<a target="_blank"  className="links "  href={`http://${this.props.instance.host}:${this.props.instance.port}`}>{this.props.instance.host}:{this.props.instance.port}</a><br/>
+                    Logs(Catalina)<a className="links" target="_blank" href={`http://INW1PF14DEZC:3000/instances/getLogs/${this.props.instance._id}/catalina`}>click here!</a><br/>
+                    Logs(Node):<a  className="links"  target="_blank" href={`http://INW1PF14DEZC:3000/instances/getLogs/${this.props.instance._id}/node`}>click here!</a><br/>
                       <b>Refresh Status</b> <i onClick={ ()=> this.refresh()}className={`f fas fa-sync ${spin}`}></i>
                   </p>
 

@@ -16,12 +16,12 @@
   background: #eeeeee;
 }
 
-a {
+.links {
     color:green;
     text-decoration: none;
 }
 
-a:hover
+.link:hover
 {
      color:#00A0C6;
      text-decoration:none;
