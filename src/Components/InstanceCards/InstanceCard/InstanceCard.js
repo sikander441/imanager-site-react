@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import './InstanceCard.css'
 import axios from 'axios'
 import Switch from "react-switch";
+import {withRouter,Link} from 'react-router-dom'
 
 class InstanceCard extends Component{
   state={
@@ -19,6 +20,7 @@ class InstanceCard extends Component{
      if(res.data.toLowerCase()==="up")
       this.disabled=false;
     }).catch(err =>{
+      console.log('came here')
       this.setState({refreshing:false})
       console.log(err)
     } )
@@ -72,7 +74,7 @@ class InstanceCard extends Component{
 
               </div>
               <div className="card-footer ">
-                <button type="button" className="btn  btn-sm btn-block card-link">Instance Details </button>
+              <Link to={`instanceDetail?_id=${this.props.instance._id}`}> <button type="button" className="btn  btn-sm btn-block card-link">Instance Details </button></Link>
               </div>
           </div>
         </div>
@@ -80,4 +82,4 @@ class InstanceCard extends Component{
   }
 }
 
-export default InstanceCard
+export default withRouter(InstanceCard)

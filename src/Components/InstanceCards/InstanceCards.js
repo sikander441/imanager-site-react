@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import InstanceCard from './InstanceCard/InstanceCard'
 import axios from 'axios';
+import io from 'socket.io-client';
 
 class InstanceCards extends Component{
 
@@ -14,6 +15,10 @@ class InstanceCards extends Component{
      const instances = res.data.data;
      this.setState({ instances });
    }).catch(err => console.log(err))
+   const socket = io('http://localhost:3000');
+   socket.on('updateReceived',(data)=>{
+     console.log('Recevied updated data',data);
+   })
 }
 
 handleChange = event => {

@@ -1,0 +1,22 @@
+  
+.table{
+    margin-top: 30px;
+}
+
+#logs{
+   overflow-y: auto;
+   min-height: fit-content;
+}
+
+h2,h5{
+    margin: 5px;
+    text-decoration: underline;
+}
+
+
+#refresh{
+   width: 120px; 
+}
+button{
+    margin: 3px;
+}
