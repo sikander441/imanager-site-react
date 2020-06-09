@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import './instanceDetails.css'
 import axios from 'axios';
 import queryString from 'query-string'
+import Terminal from 'terminal-in-react';
 
 class instanceDetails extends Component{
     
@@ -17,9 +18,20 @@ class instanceDetails extends Component{
         instanceUser:""
 
     }
+    processCommand(cmd,cb)
+    {
+        const _id = queryString.parse(this.props.location.search)._id
+        console.log(cmd)
+        axios.post(`http://inmgr01:3000/instances/runSSH`,{id:_id,cmd:cmd.join(" ")})
+        .then ( res => {
+            cb(res.data)
+        }).catch( err =>{
+            cb(err.message)
+        })
+    }
     componentDidMount(){
         const _id = queryString.parse(this.props.location.search)._id
-        axios.get(`http://INW1PF14DEZC:3000/instances?_id=${_id}`)
+        axios.get(`http://inmgr01:3000/instances?_id=${_id}`)
    .then(res => {
      const instance = res.data.data;
     this.setState({
@@ -42,6 +54,20 @@ class instanceDetails extends Component{
         return (
            
             <React.Fragment>
+                <Terminal
+          color='green'
+          backgroundColor='black'
+          barColor='black'
+          startState='maximised'
+          style={{ fontWeight: "bold", fontSize: "1em", height: "60vh" }}
+          commandPassThrough ={
+             (cmd,cb) => this.processCommand(cmd,cb)
+          }
+          descriptions={{
+            color: false, show: false, clear: false
+          }}
+          msg='You can run basic commands like cp,mv, cat etc.Please note:  vi, cd,tailf  etc are not supported.'
+        />
 
             <h2>Instance Details</h2>
                     
@@ -73,49 +99,34 @@ class instanceDetails extends Component{
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
-                                <td>domainName</td>
-                                <td>{this.state.ihome}</td>
+                                <td>Domain Name</td>
+                                <td>{this.state.domainName}</td>
                             </tr>
                             <tr>
                                 <th scope="row">5</th>
-                                <td>ihome</td>
+                                <td>Infa Home</td>
                                 <td>{this.state.ihome}</td>
                             </tr>
                               <tr>
                                 <th scope="row">6</th>
-                                <td>Admin Console</td>
+                                <td>Admin Console URL</td>
                                 <td><a target="_blank" href={`http://${this.state.host}:${this.state.port}`}>{`${this.state.host}:${this.state.port}`}</a></td>
                             </tr>
                             <tr>
-                                <th scope="row">9</th>
-                                <td>instanceUser</td>
+                                <th scope="row">7</th>
+                                <td>Username</td>
                                 <td>{this.state.instanceUser}</td>
                             </tr>
                             <tr>
-                                <th scope="row">10</th>
-                                <td>instancePassword</td>
+                                <th scope="row">8</th>
+                                <td>Password</td>
                                 <td>{this.state.instancePassword}</td>
                             </tr>
                         </tbody>
                     </table>
             <br/>
            
-            <div className="LogButtons" id="test">
-               <p>
-                    <button className="btn btn-default"  type="button" data-toggle="collapse" data-target="#logs" >Catalina.out</button>
-                    <button className="btn btn-default"  type="button" data-toggle="collapse" data-target="#logs" >node.log</button>
-               </p>
-                
-                <div className="collapse" id="logs">
-                    
-                    <div className="card card-body">
-                        <button className="btn btn-primary" id="refresh" type="button"><span className="fas fa-sync"></span> Refresh</button>
-                      Test 1 node log
 
-                    </div>
-                </div>
-              
-            </div>
             
             </React.Fragment>
 

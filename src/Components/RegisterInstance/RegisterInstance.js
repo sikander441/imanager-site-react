@@ -36,7 +36,7 @@ class RegisterInstance extends Component{
              return result
          }
          
-        let url=`http://localhost:3000/instances/testConnection?host=${instance.host}&linuxPassword=${instance.linuxPassword}&linuxUser=${instance.linuxUser}&port=${instance.sshPort}`
+        let url=`http://inmgr01:3000/instances/testConnection?host=${instance.host}&linuxPassword=${instance.linuxPassword}&linuxUser=${instance.linuxUser}&port=${instance.sshPort}`
        
        try{
         const res = await Axios.get(url)
@@ -113,7 +113,7 @@ class RegisterInstance extends Component{
             
          }
          console.log('fetching')
-         Axios.post('http://localhost:3000/instances',this.state.instance)
+         Axios.post('http://inmgr01:3000/instances',this.state.instance)
          .then((res) => {
             console.log(res.data)
              if(res.data.status=="success")

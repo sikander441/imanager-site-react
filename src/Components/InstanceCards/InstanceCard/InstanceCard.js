@@ -13,7 +13,7 @@ class InstanceCard extends Component{
   disabled=false;
    refresh = () =>{
      this.setState({refreshing:true})
-     let url = `http://INW1PF14DEZC:3000/instances/isUp/${this.props.instance._id}`
+     let url = `http://inmgr01:3000/instances/isUp/${this.props.instance._id}`
      axios.get(url)
      .then(res => {
       this.setState({status:res.data,refreshing:false,checked:res.data.toLowerCase()==="down"?false:true})
@@ -28,9 +28,9 @@ class InstanceCard extends Component{
   }
   handleChange = ()=>{
     this.setState({checked:!this.state.checked})
-     let url=`http://INW1PF14DEZC:3000/instances/shutdown?id=${this.props.instance._id}`
+     let url=`http://inmgr01:3000/instances/shutdown?id=${this.props.instance._id}`
     if(this.state.status.toLowerCase()==="down"){
-     url=`http://localhost:3000/instances/startup/${this.props.instance._id}`
+     url=`http://inmgr01:3000/instances/startup/${this.props.instance._id}`
      this.disabled=true;
      setTimeout(() => {
        console.log('button enabled again')
@@ -66,8 +66,8 @@ class InstanceCard extends Component{
 
                   <p className="card-text">
                   URL:<a target="_blank"  className="links "  href={`http://${this.props.instance.host}:${this.props.instance.port}`}>{this.props.instance.host}:{this.props.instance.port}</a><br/>
-                    Logs(Catalina)<a className="links" target="_blank" href={`http://INW1PF14DEZC:3000/instances/getLogs/${this.props.instance._id}/catalina`}>click here!</a><br/>
-                    Logs(Node):<a  className="links"  target="_blank" href={`http://INW1PF14DEZC:3000/instances/getLogs/${this.props.instance._id}/node`}>click here!</a><br/>
+                    Logs(Catalina)<a className="links" target="_blank" href={`http://inmgr01:3000/instances/getLogs/${this.props.instance._id}/catalina`}>click here!</a><br/>
+                    Logs(Node):<a  className="links"  target="_blank" href={`http://inmgr01:3000/instances/getLogs/${this.props.instance._id}/node`}>click here!</a><br/>
                       <b>Refresh Status</b> <i onClick={ ()=> this.refresh()}className={`f fas fa-sync ${spin}`}></i>
                   </p>
 

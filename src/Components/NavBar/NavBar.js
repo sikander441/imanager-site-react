@@ -16,15 +16,7 @@ class NavBar extends Component{
                       </button>
                       </li>
                       </Link>
-                       <li className= " nav-item dropdown">
-                           <button className="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
-                           <span className="fas fa-user caret"></span> Account</button>
-                        
-                           <ul className="dropdown-menu ">
-                           <li><a className="dropdown-item" href="/"> Log out</a></li>
-                           <li><a className="dropdown-item" href="/"> Edit profile</a></li>
-                           </ul>
-                       </li>
+
 
                    </ul>
 

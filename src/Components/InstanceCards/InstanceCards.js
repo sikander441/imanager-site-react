@@ -10,7 +10,7 @@ class InstanceCards extends Component{
    filter:""
  }
  componentDidMount(){
-   axios.get(`http://INW1PF14DEZC:3000/instances`)
+   axios.get(`http://inmgr01:3000/instances`)
    .then(res => {
      const instances = res.data.data;
      this.setState({ instances });
