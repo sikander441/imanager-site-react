@@ -8,10 +8,20 @@ class InstanceCard extends Component{
   state={
     refreshing:false,
     status:this.props.instance.status,
-    checked:this.props.instance.status.toLowerCase()==="down"?false:true
+    checked:this.props.instance.status.toLowerCase()==="down"?false:true,
+    activeServiceUrl:"",
+    activeCsName:""
+  }
+  componentDidMount(){
+    for (var i=0;i<this.props.instance.CatalogServices.length;i++)
+    {
+      if (this.props.instance.CatalogServices[i].status == "UP")
+       {this.setState({activeServiceUrl:this.props.instance.CatalogServices[i].url,activeCsName:this.props.instance.CatalogServices[i].name})}
+    }
   }
   disabled=false;
    refresh = () =>{
+     console.log(this.props.instance)
      this.setState({refreshing:true})
      let url = `http://inmgr01:3000/instances/isUp/${this.props.instance._id}`
      axios.get(url)
@@ -44,15 +54,23 @@ class InstanceCard extends Component{
     }).catch(err => console.log(err))
   }
 
+ 
   render()
   {
+
+    var serviceUrl = this.state.activeServiceUrl=="" ? <b>No CS is up</b> :  (<><b>Active CS:</b> <a className='links' target='_blank' href={`http://${this.state.activeServiceUrl}`}>{`${this.state.activeServiceUrl}`}</a><br/><b>CS Name:</b>{this.state.activeCsName}</>)
+    
     var spin=null;
     if(this.state.refreshing)
      spin="fa-spin";
 
     var border="border-success"
     if(this.state.status.toLowerCase()==="down")
-     border="border-danger"
+    {
+      border="border-danger"
+      serviceUrl = <b>Instance is Down</b>
+    }
+     
     return (
        <div className="col-md-4 ">
           <div className={`card shadow  mb-3 ${border}`}>
@@ -68,7 +86,8 @@ class InstanceCard extends Component{
                   URL:<a target="_blank"  className="links "  href={`http://${this.props.instance.host}:${this.props.instance.port}`}>{this.props.instance.host}:{this.props.instance.port}</a><br/>
                     Logs(Catalina)<a className="links" target="_blank" href={`http://inmgr01:3000/instances/getLogs/${this.props.instance._id}/catalina`}>click here!</a><br/>
                     Logs(Node):<a  className="links"  target="_blank" href={`http://inmgr01:3000/instances/getLogs/${this.props.instance._id}/node`}>click here!</a><br/>
-                      <b>Refresh Status</b> <i onClick={ ()=> this.refresh()}className={`f fas fa-sync ${spin}`}></i>
+                      <b>Refresh Status</b> <i onClick={ ()=> this.refresh()}className={`f fas fa-sync ${spin}`}></i><br/>
+                      {serviceUrl}
                   </p>
 
 
